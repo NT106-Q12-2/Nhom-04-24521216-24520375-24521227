@@ -83,7 +83,7 @@ namespace Cau7
                 }
             }
         }
-        // Đặt hàm này trong lớp DatabaseFunction (hoặc DbHelper)
+        // Đặt hàm này trong lớp DatabaseFunction 
 
         public static int ValidateUser(string username, string password)
         {
