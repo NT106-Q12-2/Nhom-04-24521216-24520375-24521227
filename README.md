@@ -1,6 +1,7 @@
 # Nhom-04-24521216-24520375-24521227
 
-* **NHÓM 04**
+## Nhóm 04
+
 | MSSV | Họ và tên | Username |
 | :--- | :--- | :--- |
 | 24521216 | Trương Vĩnh Nguyên | [NguyenTV-UIT](https://github.com/NguyenTV-UIT) |
