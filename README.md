@@ -1,6 +1,8 @@
 # Nhom-04-24521216-24520375-24521227
 
 * **NHÓM 04**
-* **Thành viên 1:** `Trương Vĩnh Nguyên - 24521216 - NguyenTV-UIT`
-* **Thành viên 2:** `Huỳnh Nhật Duy - 24520375 - k1w106`
-* **Thành viên 3:** `Đào Mạnh Nhân - 24521227 - Manh-Nhan299`
+| MSSV | Họ và tên | Username |
+| :--- | :--- | :--- |
+| 24521216 | Trương Vĩnh Nguyên | [NguyenTV-UIT](https://github.com/NguyenTV-UIT) |
+| 24520375 | Huỳnh Nhật Duy | [k1w106](https://github.com/k1w106) |
+| 24521227 | Đào Mạnh Nhân | [Manh-Nhan299](https://github.com/Manh-Nhan299) |
