@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cau1", "Cau1\Cau1.csproj", "{EA0CE8FA-940D-4F11-BB4F-0059EA3593CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cau3", "Cau3\Cau3.csproj", "{5A819854-0AFA-4084-9D4B-BE18AED87110}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
