@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="4.14.1" />
+    <PackageReference Include="S22.Pop3" Version="1.2.4694.18487" />
   </ItemGroup>
 
 </Project>
