@@ -34,6 +34,7 @@
             tb_password = new TextBox();
             btn_login = new Button();
             lv_showemail = new ListView();
+            cbb_selectprotocol = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -70,7 +71,7 @@
             // 
             // btn_login
             // 
-            btn_login.Location = new Point(866, 20);
+            btn_login.Location = new Point(888, 73);
             btn_login.Name = "btn_login";
             btn_login.Size = new Size(112, 34);
             btn_login.TabIndex = 4;
@@ -87,11 +88,21 @@
             lv_showemail.UseCompatibleStateImageBehavior = false;
             lv_showemail.DoubleClick += lv_showemail_DoubleClick;
             // 
+            // cbb_selectprotocol
+            // 
+            cbb_selectprotocol.FormattingEnabled = true;
+            cbb_selectprotocol.Items.AddRange(new object[] { "IMAP", "POP3" });
+            cbb_selectprotocol.Location = new Point(818, 21);
+            cbb_selectprotocol.Name = "cbb_selectprotocol";
+            cbb_selectprotocol.Size = new Size(182, 33);
+            cbb_selectprotocol.TabIndex = 6;
+            // 
             // Cau3
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1056, 659);
+            Controls.Add(cbb_selectprotocol);
             Controls.Add(lv_showemail);
             Controls.Add(btn_login);
             Controls.Add(tb_password);
@@ -112,5 +123,6 @@
         private TextBox tb_password;
         private Button btn_login;
         private ListView lv_showemail;
+        private ComboBox cbb_selectprotocol;
     }
 }
