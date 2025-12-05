@@ -25,6 +25,7 @@ namespace Bai1
         private void btn_login_Click(object sender, EventArgs e)
         {
             lv_showemail.Items.Clear();
+            lv_showemail.Columns.Clear();
             if (lv_showemail.Items.Count == 0)
             {
                 lv_showemail.Columns.Add("Email", 300);
