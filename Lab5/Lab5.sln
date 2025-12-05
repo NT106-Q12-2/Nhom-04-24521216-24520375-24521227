@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cau1", "Cau1\Cau1.csproj", "{EA0CE8FA-940D-4F11-BB4F-0059EA3593CA}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cau3", "Cau3\Cau3.csproj", "{5A819854-0AFA-4084-9D4B-BE18AED87110}"
 EndProject
 Global
@@ -16,6 +17,10 @@ Global
 		{EA0CE8FA-940D-4F11-BB4F-0059EA3593CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA0CE8FA-940D-4F11-BB4F-0059EA3593CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA0CE8FA-940D-4F11-BB4F-0059EA3593CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A819854-0AFA-4084-9D4B-BE18AED87110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A819854-0AFA-4084-9D4B-BE18AED87110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A819854-0AFA-4084-9D4B-BE18AED87110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A819854-0AFA-4084-9D4B-BE18AED87110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
