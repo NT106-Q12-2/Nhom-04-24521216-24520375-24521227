@@ -1,4 +1,4 @@
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using System;
 using MailKit.Net.Imap;
 using MailKit;
@@ -24,6 +24,12 @@ namespace Bai1
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            if (tb_email.Text == "" || tb_password.Text == "")
+            {
+                MessageBox.Show("Hãy nhập đầy đủ thông tin");
+                return;
+            }
+
             lv_showemail.Items.Clear();
             lv_showemail.Columns.Clear();
             if (lv_showemail.Items.Count == 0)
@@ -40,6 +46,10 @@ namespace Bai1
             else if (cbb_selectprotocol.SelectedItem.ToString() == "POP3")
             {
                 POPLogin();
+            }
+            else if (cbb_selectprotocol.SelectedItem.ToString() == "")
+            {
+                MessageBox.Show("Hãy chọn 1 giao thức");
             }
 
 
