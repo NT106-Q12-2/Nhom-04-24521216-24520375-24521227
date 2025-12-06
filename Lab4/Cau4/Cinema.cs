@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Net.Mail;
 using static Cau4.Cinema;
 
 namespace Cau4
@@ -22,6 +23,9 @@ namespace Cau4
         int steps;
         int totalsteps = 1;
         List<Movie> currentlist = new List<Movie>();
+
+        string mail = "5k1b1d12kar6@gmail.com";
+        string AppPass = "scss kjto bxig pczp";
 
         private readonly Dictionary<int, string> url = new()
         {
@@ -165,9 +169,23 @@ namespace Cau4
         {
             progressBarDD.Value = 0;
             progressBarDD.Visible = true;
-            getHTML(cbb_cinemaUrl.Text);
+            if (string.IsNullOrEmpty(cbb_cinemaUrl.Text))
+            {
+                MessageBox.Show("Vui lòng chọn URL rạp chiếu phim", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                progressBarDD.Visible = false;
+                return;
+            }
+            try
+            {
+                getHTML(cbb_cinemaUrl.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi truy cập URL: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                progressBarDD.Visible = false;
+                return;
+            }
             var allMovies = new List<Movie>();
-
 
             // Site 1: CGV
             if (url.TryGetValue(1, out string cgvUrl))
@@ -234,16 +252,100 @@ namespace Cau4
         {
             try
             {
-                if (tb_name != null && tb_phone != null)
+                List<string> selectedSeats = new List<string>();
+                foreach (Control control in this.Controls)
                 {
-                    MessageBox.Show("Bạn đã đặt vé thành công của phim " + cbb_movieSelection.Text + " cho khách hàng tên " + tb_name.Text + " có số điện thoại là " + tb_phone.Text + ".", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }    
+                    if (control is CheckBox cb && cb.Checked && cb.Name.StartsWith("cb_"))
+                    {
+                        IsValidSeat(cb.Name.Substring(3));
+                        selectedSeats.Add(cb.Name.Substring(3));
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(tb_name.Text) && !string.IsNullOrWhiteSpace(tb_phone.Text) && tb_email != null && selectedSeats.Count != 0)
+                {
+                    MailSender(selectedSeats);
+                    MessageBox.Show("Đặt vé thành công! Vui lòng kiểm tra email để xác nhận.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private bool IsValidSeat(string seat)
+        {
+            string[] validSeats = { "A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5" };
+            return validSeats.Contains(seat);
+        }
+
+        private string GetPosterUrl(string movieTitle)
+        {
+            if (movies == null || string.IsNullOrEmpty(movieTitle)) return "";
+
+            var movie = movies.FirstOrDefault(m => m.Title.Equals(movieTitle, StringComparison.OrdinalIgnoreCase));
+
+            return movie != null ? movie.PosterURL : "https://via.placeholder.com/200x300?text=No+Image";
+        }
+
+        private void MailSender(List<string> seats)
+        {
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            string MailFrom = mail;
+            string AppPassword = AppPass;
+            string MailTo = tb_email.Text;
+
+            var basicCredential = new NetworkCredential(MailFrom, AppPassword);
+
+            MailMessage message = new MailMessage();
+            MailAddress fromAddress = new MailAddress(MailFrom, "Cinema Booking Sytsem");
+            smtpClient.EnableSsl = true;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = basicCredential;
+            message.From = fromAddress;
+            message.To.Add(MailTo);
+            message.Subject = "Xác Nhận Đặt Vé -- Cinema Web Service";
+            message.IsBodyHtml = true;
+
+            string movieName = cbb_movieSelection.Text;
+            string posterLink = GetPosterUrl(movieName);
+            string seatString = string.Join(", ", seats);
+
+            string htmlContent = $@"
+                <html>
+                <body style='font-family: Arial, sans-serif;'>
+                    <div style='border: 1px solid #ddd; padding: 20px; max-width: 600px; border-radius: 10px;'>
+                        <h2 style='color: #E50914;'>Đặt Vé Thành Công!</h2>
+                        <p>Xin chào <b>{tb_name.Text}</b>,</p>
+                        <p>Bạn đã đặt vé cho bộ phim: <b style='font-size: 16px;'>{movieName}</b></p>
+                        
+                        <table style='width: 100%; margin-top: 15px;'>
+                            <tr>
+                                <td style='width: 150px; vertical-align: top;'>
+                                    <img src='{posterLink}' alt='Poster' width='140' style='border-radius: 5px; box-shadow: 2px 2px 5px #ccc;' />
+                                </td>
+                                <td style='vertical-align: top; padding-left: 15px;'>
+                                    <p><b>Số điện thoại:</b> {tb_phone.Text}</p>
+                                    <p><b>Ghế đã chọn:</b> <span style='background-color: #f1f1f1; padding: 3px 8px; border-radius: 4px;'>{seatString}</span></p>
+                                    <p><b>Tổng số ghế:</b> {seats.Count}</p>
+                                    <p style='color: green; font-weight: bold;'>Trạng thái: Đã xác nhận</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <hr style='border: 0; border-top: 1px solid #eee; margin: 20px 0;'>
+                        <p style='font-size: 12px; color: #777;'>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.</p>
+                    </div>
+                </body>
+                </html>";
+
+            message.Body = htmlContent;
+
+            smtpClient.Send(message);
         }
     }
 }
