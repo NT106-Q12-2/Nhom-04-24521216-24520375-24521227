@@ -10,7 +10,6 @@ namespace Cau1
         public Cau1()
         {
             InitializeComponent();
-            tb_password.UseSystemPasswordChar = true;
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -23,7 +22,7 @@ namespace Cau1
                 using (MailMessage message = new MailMessage())
                 {
                     MailAddress fromAddress = new MailAddress(mailfrom);
-                    smtpClient.EnableSsl = true;
+                    smtpClient.EnableSsl = true; 
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.Credentials = basicCredential;
@@ -38,7 +37,7 @@ namespace Cau1
                         smtpClient.Send(message);
                         MessageBox.Show("Successfully sent!");
                     }
-
+                   
                     catch (Exception ex)
                     {
                         MessageBox.Show("Username or password is Incorrect");
@@ -47,6 +46,5 @@ namespace Cau1
             }
 
         }
-
     }
 }

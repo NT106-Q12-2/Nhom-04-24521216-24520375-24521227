@@ -28,7 +28,7 @@ namespace Cau7
             comboBox_language.SelectedIndex = 0;
         }
 
-        private void hgroupBox2_Enter(object sender, EventArgs e)
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }
@@ -87,18 +87,6 @@ namespace Cau7
 
         private void radioButton_male_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // FormSignUp_Bai7
-            // 
-            this.ClientSize = new System.Drawing.Size(407, 470);
-            this.Name = "FormSignUp_Bai7";
-            this.ResumeLayout(false);
 
         }
     }
