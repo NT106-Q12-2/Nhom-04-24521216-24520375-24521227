@@ -16,6 +16,7 @@ namespace Cau6
             btn_refresh.Enabled = false;
             btn_signout.Enabled = false;
             btn_sendmail.Enabled = false;
+            tb_password.UseSystemPasswordChar = true;
             lv_showemail.Columns.Clear();
             if (lv_showemail.Items.Count == 0)
             {
@@ -134,6 +135,14 @@ namespace Cau6
             {
                 MessageBox.Show("Refresh failed: " + ex.Message);
             }
+        }
+
+        private void btn_sendmail_Click(object sender, EventArgs e)
+        {
+            SendMail sendmail = new SendMail(tb_email.Text.Trim(), tb_password.Text.Trim());
+            this.Hide();
+            sendmail.ShowDialog();
+            this.Show();
         }
     }
 }

@@ -35,16 +35,18 @@
             // 
             // tb_webURL
             // 
-            tb_webURL.Location = new Point(12, 24);
+            tb_webURL.Location = new Point(10, 19);
+            tb_webURL.Margin = new Padding(2, 2, 2, 2);
             tb_webURL.Name = "tb_webURL";
-            tb_webURL.Size = new Size(608, 31);
+            tb_webURL.Size = new Size(487, 27);
             tb_webURL.TabIndex = 0;
             // 
             // btn_get
             // 
-            btn_get.Location = new Point(639, 21);
+            btn_get.Location = new Point(511, 17);
+            btn_get.Margin = new Padding(2, 2, 2, 2);
             btn_get.Name = "btn_get";
-            btn_get.Size = new Size(112, 34);
+            btn_get.Size = new Size(90, 27);
             btn_get.TabIndex = 1;
             btn_get.Text = "Get";
             btn_get.UseVisualStyleBackColor = true;
@@ -53,21 +55,23 @@
             // rtb_showHTML
             // 
             rtb_showHTML.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            rtb_showHTML.Location = new Point(0, 73);
+            rtb_showHTML.Location = new Point(-7, 50);
+            rtb_showHTML.Margin = new Padding(2, 2, 2, 2);
             rtb_showHTML.Name = "rtb_showHTML";
             rtb_showHTML.ScrollBars = RichTextBoxScrollBars.Vertical;
-            rtb_showHTML.Size = new Size(759, 405);
+            rtb_showHTML.Size = new Size(608, 325);
             rtb_showHTML.TabIndex = 2;
             rtb_showHTML.Text = "";
             // 
             // Cau1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(759, 478);
+            ClientSize = new Size(607, 382);
             Controls.Add(rtb_showHTML);
             Controls.Add(btn_get);
             Controls.Add(tb_webURL);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Cau1";
             Text = "Câu 1";
             ResumeLayout(false);
