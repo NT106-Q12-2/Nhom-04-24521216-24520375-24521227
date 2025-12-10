@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 
 namespace Lab4
 {
@@ -18,9 +18,9 @@ namespace Lab4
         {
             try
             {
-                WebRequest request = WebRequest.Create(szURL);
-                WebResponse response = request.GetResponse();
-                Stream dataStream = response.GetResponseStream();
+                WebRequest request = WebRequest.Create(szURL); // tạo yêu cầu
+                WebResponse response = request.GetResponse();//nhận phản hồi
+                Stream dataStream = response.GetResponseStream();//lấy luồng dữ liệu
                 StreamReader reader = new StreamReader(dataStream);
                 string responseFromServer = reader.ReadToEnd();
                 rtb_showHTML.Text = responseFromServer;

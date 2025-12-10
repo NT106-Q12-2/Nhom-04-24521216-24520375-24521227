@@ -25,8 +25,9 @@ namespace Cau5
                 try
                 {
 
-                    var content = new MultipartFormDataContent
+                    var content = new MultipartFormDataContent//Tạo(Content) dưới dạng multipartformdata'.
             {
+                        // Thêm trường 'username' và giá trị
                 { new StringContent(username), "username" },
                 { new StringContent(password), "password" }
             };
