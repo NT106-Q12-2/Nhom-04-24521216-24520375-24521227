@@ -25,15 +25,15 @@ namespace Cau6
             {
                 try
                 {
-                    var content = new MultipartFormDataContent
+                    var content = new MultipartFormDataContent// Tạo nội dung yêu cầu dưới dạng 'multipartformdata'.
             {
                 { new StringContent(username), "username" },
                 { new StringContent(password), "password" }
             };
 
                     var response = await client.PostAsync(Url, content);
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    var responseObject = JObject.Parse(responseString);
+                    var responseString = await response.Content.ReadAsStringAsync();//gửi yêu cầu POST bất đồng bộ tới API token và chờ phản hồi
+                    var responseObject = JObject.Parse(responseString);//phân tích chuỗi JSON
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -54,6 +54,7 @@ namespace Cau6
                         {
                             var userObject = JObject.Parse(getUserResponseString);
 
+                            
                             var userId = userObject["id"]?.ToString();
                             var userEmail = userObject["email"]?.ToString();
                             var isActive = userObject["is_active"]?.ToString();
