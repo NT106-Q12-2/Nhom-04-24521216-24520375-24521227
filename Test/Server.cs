@@ -16,7 +16,7 @@ namespace NT106_Test
 {
     public partial class Server : Form
     {
-        Dictionary<string, ValueTuple<string, string>> ListMonAn = new Dictionary<string, ValueTuple<string, string>>();
+        Dictionary<char, List<string>> ListMonAn = new Dictionary<char, List<string>>();
         public Server()
         {
             InitializeComponent();
@@ -32,7 +32,8 @@ namespace NT106_Test
                     {
                         string line = sr.ReadLine();
                         //MessageBox.Show(line + "    length: " + line.Length);
-                        string id = "", monan = "", price = "";
+                        string monan = "", price = "";
+                        char id = ' ';
                         int idx = 0;
                         while (line[idx] != ';')
                         {
@@ -52,7 +53,10 @@ namespace NT106_Test
                             idx++;
                         }
                         //MessageBox.Show("ID: " + id + ", Name : " + monan+"Price:"+price);
-                        ListMonAn.Add(monan, ValueTuple.Create(id, price));
+                        List<string> list = new List<string>();
+                        list.Add(monan);
+                        list.Add(price); 
+                        ListMonAn.Add(id, list);
                     }
                 }
             }
@@ -82,7 +86,13 @@ namespace NT106_Test
             //}
             if(request.Contains("ORDER"))
             {
-                ListViewItem item = new ListViewItem(request);
+                char so_ban = request[6], id_mon = request[8], so_luong = request[10];
+                string name = ListMonAn[id][0];
+                int total = ListMonAn[id][1] * (so_luong - '0');
+                listView1.Columns.Add(so_ban, name, so_luong, total);
+            }
+            else if(request.Contains("MENU"))
+            {
 
             }
         }
@@ -141,6 +151,11 @@ namespace NT106_Test
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_charge_Click(object sender, EventArgs e)
         {
 
         }

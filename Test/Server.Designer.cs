@@ -152,6 +152,7 @@
             this.btn_charge.TabIndex = 8;
             this.btn_charge.Text = "Charge";
             this.btn_charge.UseVisualStyleBackColor = true;
+            this.btn_charge.Click += new System.EventHandler(this.btn_charge_Click);
             // 
             // Server
             // 
